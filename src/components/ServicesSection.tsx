@@ -1,35 +1,25 @@
-import { Network, Camera, Wifi, Server, Shield, Headphones } from "lucide-react";
+import { Camera, Shield, Server, Headphones } from "lucide-react";
 
 const services = [
   {
-    icon: Network,
-    title: "Network Infrastructure",
-    description: "Complete LAN/WAN setup, structured cabling, switches, routers, and enterprise-grade network design.",
-  },
-  {
     icon: Camera,
     title: "CCTV & DVR Systems",
-    description: "HD surveillance cameras, DVR/NVR recording, remote monitoring, and 24/7 security coverage.",
+    description: "HD surveillance cameras, Hikvision DVR/NVR recording, remote monitoring via Hik-Connect, and 24/7 security coverage.",
   },
   {
-    icon: Wifi,
-    title: "Internet Services",
-    description: "High-speed broadband, fiber optic connections, Wi-Fi solutions, and reliable ISP partnerships.",
+    icon: Shield,
+    title: "Security & Access Control",
+    description: "Complete security solutions including firewall configuration, VPN setup, access control systems, and cyber threat protection.",
   },
   {
     icon: Server,
     title: "Server & IT Setup",
-    description: "On-premise servers, cloud integration, data backup solutions, and IT infrastructure management.",
-  },
-  {
-    icon: Shield,
-    title: "Firewall & Security",
-    description: "Network security, firewall configuration, VPN setup, and cyber threat protection.",
+    description: "On-premise servers, MikroTik router configuration, cloud integration, data backup, and IT infrastructure management.",
   },
   {
     icon: Headphones,
-    title: "24/7 Support",
-    description: "Round-the-clock technical support, maintenance contracts, and rapid on-site response.",
+    title: "Remote Support & Maintenance",
+    description: "Remote monitoring, troubleshooting, scheduled maintenance, and rapid response — all managed online from Ismailia.",
   },
 ];
 
@@ -47,7 +37,7 @@ const ServicesSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {services.map((service) => (
             <div
               key={service.title}
