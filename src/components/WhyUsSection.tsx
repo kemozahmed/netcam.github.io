@@ -1,12 +1,12 @@
 import { CheckCircle2 } from "lucide-react";
 
 const reasons = [
-  "Certified networking & surveillance professionals",
-  "Enterprise-grade equipment & trusted brands",
-  "Custom solutions tailored to your needs",
+  "Hikvision & HiLook certified installer",
+  "MikroTik router & network expertise",
+  "Remote monitoring & Hik-Connect setup",
   "Competitive pricing with transparent quotes",
   "Fast installation & minimal downtime",
-  "Ongoing maintenance & 24/7 support",
+  "Online support — no office visit needed",
 ];
 
 const WhyUsSection = () => {
@@ -19,11 +19,11 @@ const WhyUsSection = () => {
               Why Choose Us
             </p>
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Trusted by businesses <span className="text-primary">since day one</span>
+              Trusted security <span className="text-primary">expert</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              We deliver reliable, scalable technology solutions backed by years of
-              hands-on experience in networking, surveillance, and internet services.
+              Hands-on experience with Hikvision DVR systems, MikroTik networking,
+              and server infrastructure — all managed remotely from Ismailia.
             </p>
           </div>
 

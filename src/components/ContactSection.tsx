@@ -19,20 +19,26 @@ const ContactSection = () => {
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="space-y-8">
             <p className="text-muted-foreground text-lg leading-relaxed">
-              Ready to upgrade your network, secure your premises, or get reliable
-              internet? Reach out and we'll provide a free consultation.
+              Ready to secure your premises with professional CCTV and DVR systems?
+              Reach out and we'll provide a free consultation.
             </p>
             <div className="space-y-5">
               {[
-                { icon: Phone, text: "+1 (555) 123-4567" },
-                { icon: Mail, text: "info@yourservice.com" },
-                { icon: MapPin, text: "123 Tech Street, City, State" },
-              ].map(({ icon: Icon, text }) => (
+                { icon: Phone, text: "+20 122 377 7109", href: "tel:+201223777109" },
+                { icon: Mail, text: "kareemahmedibrahiimeldesoky@gmail.com", href: "mailto:kareemahmedibrahiimeldesoky@gmail.com" },
+                { icon: MapPin, text: "Ismailia, Egypt — Online Service" },
+              ].map(({ icon: Icon, text, href }) => (
                 <div key={text} className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-primary" />
                   </div>
-                  <span className="text-foreground">{text}</span>
+                  {href ? (
+                    <a href={href} className="text-foreground hover:text-primary transition-colors break-all">
+                      {text}
+                    </a>
+                  ) : (
+                    <span className="text-foreground">{text}</span>
+                  )}
                 </div>
               ))}
             </div>
