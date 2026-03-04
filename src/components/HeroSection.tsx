@@ -1,14 +1,14 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
 import { Shield, Camera, Server } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroBg})` }}
-      />
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroBg})` }} />
       <div className="absolute inset-0 bg-background/70" />
       <div className="absolute inset-0 bg-gradient-radial" />
 
@@ -20,22 +20,21 @@ const HeroSection = () => {
         </div>
 
         <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-          <span className="text-foreground">CCTV & DVR</span>
+          <span className="text-foreground">{t("hero.title1")}</span>
           <br />
-          <span className="text-primary text-glow">Security Solutions</span>
+          <span className="text-primary text-glow">{t("hero.title2")}</span>
         </h1>
 
         <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Professional CCTV installation, DVR/NVR systems, remote monitoring,
-          and complete security solutions — serving Ismailia and beyond.
+          {t("hero.desc")}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="text-lg px-8 py-6 animate-pulse-glow" asChild>
-            <a href="#contact">Get a Free Quote</a>
+            <a href="#contact">{t("hero.quote")}</a>
           </Button>
           <Button size="lg" variant="outline" className="text-lg px-8 py-6 border-primary/30 text-primary hover:bg-primary/10" asChild>
-            <a href="#services">Our Services</a>
+            <a href="#services">{t("hero.ourServices")}</a>
           </Button>
         </div>
       </div>
