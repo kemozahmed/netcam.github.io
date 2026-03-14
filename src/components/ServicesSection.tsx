@@ -1,15 +1,44 @@
-import { Camera, Shield, Server, Headphones } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Factory, ShieldCheck, MonitorSmartphone, Sun, Wifi, BarChart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/lib/supabase";
 
 const serviceKeys = [
-  { icon: Camera, titleKey: "services.cctv.title", descKey: "services.cctv.desc" },
-  { icon: Shield, titleKey: "services.security.title", descKey: "services.security.desc" },
-  { icon: Server, titleKey: "services.server.title", descKey: "services.server.desc" },
-  { icon: Headphones, titleKey: "services.support.title", descKey: "services.support.desc" },
+  { icon: Factory, titleKey: "services.industrial.title", descKey: "services.industrial.desc", cmsKey: "servicesIndustrialDesc" },
+  { icon: ShieldCheck, titleKey: "services.security.title", descKey: "services.security.desc", cmsKey: "servicesSecurityDesc" },
+  { icon: MonitorSmartphone, titleKey: "services.software.title", descKey: "services.software.desc", cmsKey: "servicesSoftwareDesc" },
+  { icon: Sun, titleKey: "services.solar.title", descKey: "services.solar.desc", cmsKey: "servicesSolarDesc" },
+  { icon: Wifi, titleKey: "services.iot.title", descKey: "services.iot.desc", cmsKey: "servicesIotDesc" },
+  { icon: BarChart, titleKey: "services.dashboards.title", descKey: "services.dashboards.desc", cmsKey: "servicesDashboardsDesc" },
 ];
 
 const ServicesSection = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [descriptions, setDescriptions] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    // Reset to defaults
+    const defaults: Record<string, string> = {};
+    serviceKeys.forEach(s => defaults[s.cmsKey] = t(s.descKey));
+    setDescriptions(defaults);
+
+    const fetchCmsSettings = async () => {
+      try {
+        const { data, error } = await supabase.from("site_settings").select("value").eq("key", `content_${lang}`).single();
+        if (data && !error) {
+          const fetchedDescriptions: Record<string, string> = {};
+          serviceKeys.forEach(s => {
+            fetchedDescriptions[s.cmsKey] = data.value[s.cmsKey] || t(s.descKey);
+          });
+          setDescriptions(fetchedDescriptions);
+        }
+      } catch (error) {
+        console.error("Error fetching Services CMS:", error);
+      }
+    };
+
+    fetchCmsSettings();
+  }, [lang, t]);
 
   return (
     <section id="services" className="py-24 relative">
@@ -24,7 +53,7 @@ const ServicesSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {serviceKeys.map((service) => (
             <div
               key={service.titleKey}
@@ -37,7 +66,7 @@ const ServicesSection = () => {
                 {t(service.titleKey)}
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                {t(service.descKey)}
+                {descriptions[service.cmsKey] || t(service.descKey)}
               </p>
             </div>
           ))}
