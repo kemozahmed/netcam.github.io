@@ -1,7 +1,8 @@
 import { CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import DashboardPreview from "./DashboardPreview";
 
-const reasonKeys = ["why.r1", "why.r2", "why.r3", "why.r4", "why.r5", "why.r6"];
+const reasonKeys = ["why.r1", "why.r2", "why.r3", "why.r4"];
 
 const WhyUsSection = () => {
   const { t } = useLanguage();
@@ -32,6 +33,9 @@ const WhyUsSection = () => {
                 <span className="text-foreground">{t(key)}</span>
               </div>
             ))}
+            <div className="pt-8">
+              <DashboardPreview />
+            </div>
           </div>
         </div>
       </div>

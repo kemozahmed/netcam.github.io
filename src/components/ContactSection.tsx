@@ -1,17 +1,70 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const ContactSection = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service_type: "",
+    message: "",
+  });
 
   const contactInfo = [
     { icon: Phone, text: "+20 122 377 7109", href: "tel:+201223777109" },
-    { icon: Mail, text: "kareemahmedibrahiimeldesoky@gmail.com", href: "mailto:kareemahmedibrahiimeldesoky@gmail.com" },
+    { icon: Mail, text: "info@enginxautomation.com", href: "mailto:info@enginxautomation.com" },
     { icon: MapPin, textKey: "contact.location" },
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('leads')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service_type: formData.service_type,
+          message: formData.message,
+        }]);
+
+      if (error) throw error;
+
+      toast.success(lang === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent successfully!');
+      setFormData({ name: "", email: "", phone: "", service_type: "", message: "" });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error(lang === 'ar' ? 'حدث خطأ، يرجى المحاولة مرة أخرى.' : 'An error occurred, please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData(prev => ({ ...prev, service_type: value }));
+  };
 
   return (
     <section id="contact" className="py-24">
@@ -48,13 +101,59 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <Input placeholder={t("contact.name")} className="bg-card border-border focus:border-primary" />
-            <Input placeholder={t("contact.email")} type="email" className="bg-card border-border focus:border-primary" />
-            <Input placeholder={t("contact.phone")} type="tel" className="bg-card border-border focus:border-primary" />
-            <Textarea placeholder={t("contact.message")} rows={4} className="bg-card border-border focus:border-primary" />
-            <Button size="lg" className="w-full text-lg py-6">
-              {t("contact.send")}
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            <Input
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder={t("contact.name")}
+              required
+              className="bg-card border-border focus:border-primary"
+            />
+            <Input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder={t("contact.email")}
+              type="email"
+              required
+              className="bg-card border-border focus:border-primary"
+            />
+            <Input
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder={t("contact.phone")}
+              type="tel"
+              required
+              className="bg-card border-border focus:border-primary"
+            />
+
+            <Select onValueChange={handleSelectChange} value={formData.service_type}>
+              <SelectTrigger className="bg-card border-border focus:border-primary w-full text-left" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                <SelectValue placeholder={lang === 'ar' ? "اختر الخدمة..." : "Select Service..."} />
+              </SelectTrigger>
+              <SelectContent dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                <SelectItem value="industrial">{t("services.industrial.title")}</SelectItem>
+                <SelectItem value="security">{t("services.security.title")}</SelectItem>
+                <SelectItem value="software">{t("services.software.title")}</SelectItem>
+                <SelectItem value="solar">{t("services.solar.title")}</SelectItem>
+                <SelectItem value="iot">{t("services.iot.title")}</SelectItem>
+                <SelectItem value="dashboards">{t("services.dashboards.title")}</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder={t("contact.message")}
+              rows={4}
+              required
+              className="bg-card border-border focus:border-primary"
+            />
+            <Button size="lg" className="w-full text-lg py-6" disabled={isSubmitting}>
+              {isSubmitting ? (lang === 'ar' ? "جاري الإرسال..." : "Sending...") : t("contact.send")}
             </Button>
           </form>
         </div>
