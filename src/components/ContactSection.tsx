@@ -49,19 +49,19 @@ const ContactSection = () => {
 
       if (error) throw error;
 
-      // Send instant Gmail alert via EmailJS
-      await emailjs.send(
+      toast.success(lang === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent successfully!');
+      setFormData({ name: "", email: "", phone: "", service_type: "", message: "" });
+
+      // Send instant Gmail alert via EmailJS (non-blocking)
+      emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_fo0e095',
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_6vbhmer',
         {
-          subject: '🔔 New Contact Lead',
+          subject: 'New Contact Lead',
           notification_body: `Name: ${formData.name}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nService: ${formData.service_type || 'N/A'}\nMessage: ${formData.message}\n\nAdmin: https://enginx-automation.vercel.app/admin`,
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'wtrstyzVpdh9JlLlN'
-      );
-
-      toast.success(lang === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent successfully!');
-      setFormData({ name: "", email: "", phone: "", service_type: "", message: "" });
+      ).catch(err => console.warn('EmailJS notification failed:', err));
     } catch (error) {
       console.error('Error submitting form:', error);
       toast.error(lang === 'ar' ? 'حدث خطأ، يرجى المحاولة مرة أخرى.' : 'An error occurred, please try again.');

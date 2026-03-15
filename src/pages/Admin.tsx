@@ -73,7 +73,7 @@ const Admin = () => {
       setUser(session?.user ?? null);
       if (session?.user) setNewEmail(session.user.email ?? "");
       setIsAuthenticating(false);
-    });
+    }).catch(() => setIsAuthenticating(false));
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
