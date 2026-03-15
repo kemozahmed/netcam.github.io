@@ -53,8 +53,8 @@ const HeroSection = () => {
           <Server className="w-6 h-6 text-primary" />
         </div>
 
-        <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-          <span className="text-foreground">{content.title1}</span>
+        <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-relaxed">
+          <span className="text-foreground"><span dir="ltr">{content.title1}</span></span>
           <br />
           <span className="text-primary text-glow">{content.title2}</span>
         </h1>

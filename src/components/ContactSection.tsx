@@ -73,19 +73,19 @@ const ContactSection = () => {
           <p className="text-primary font-display font-semibold tracking-widest uppercase text-sm mb-3">
             {t("contact.subtitle")}
           </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground leading-relaxed">
             {t("contact.title")}
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="space-y-8">
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className={`text-muted-foreground text-lg leading-relaxed ${lang === 'ar' ? 'text-right' : ''}`}>
               {t("contact.desc")}
             </p>
             <div className="space-y-5">
               {contactInfo.map(({ icon: Icon, text, href, textKey }) => (
-                <div key={text || textKey} className="flex items-center gap-4">
+                <div key={text || textKey} className={`flex items-center ${lang === 'ar' ? 'flex-row-reverse gap-2' : 'gap-4'}`}>
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-primary" />
                   </div>
@@ -94,7 +94,7 @@ const ContactSection = () => {
                       {text}
                     </a>
                   ) : (
-                    <span className="text-foreground">{textKey ? t(textKey) : text}</span>
+                    <span className={`text-foreground ${lang === 'ar' ? 'text-right' : ''}`}>{textKey ? t(textKey) : text}</span>
                   )}
                 </div>
               ))}

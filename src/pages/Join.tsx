@@ -111,7 +111,7 @@ const Join = () => {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">{lang === "ar" ? "الاسم الكامل" : "Full Name"}</label>
+                  <label className={`text-sm font-medium text-foreground block ${lang === 'ar' ? 'text-right' : ''}`}>{lang === "ar" ? "الاسم الكامل" : "Full Name"}</label>
                   <Input
                     name="fullName"
                     value={formData.fullName}
@@ -123,7 +123,7 @@ const Join = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">{lang === "ar" ? "البريد الإلكتروني المهني" : "Professional Email"}</label>
+                  <label className={`text-sm font-medium text-foreground block ${lang === 'ar' ? 'text-right' : ''}`}>{lang === "ar" ? "البريد الإلكتروني المهني" : "Professional Email"}</label>
                   <Input
                     name="email"
                     type="email"
@@ -138,7 +138,7 @@ const Join = () => {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">{lang === "ar" ? "رقم الهاتف" : "Phone Number"}</label>
+                  <label className={`text-sm font-medium text-foreground block ${lang === 'ar' ? 'text-right' : ''}`}>{lang === "ar" ? "رقم الهاتف" : "Phone Number"}</label>
                   <Input
                     name="phone"
                     type="tel"
@@ -151,7 +151,7 @@ const Join = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">{lang === "ar" ? "مستوى الخبرة" : "Experience Level"}</label>
+                  <label className={`text-sm font-medium text-foreground block ${lang === 'ar' ? 'text-right' : ''}`}>{lang === "ar" ? "مستوى الخبرة" : "Experience Level"}</label>
                   <Select onValueChange={handleSelectChange} value={formData.experienceLevel} required>
                     <SelectTrigger className="bg-background border-border focus:border-primary text-left" dir={dir}>
                       <SelectValue placeholder={lang === "ar" ? "اختر مستوى الخبرة" : "Select Level"} />
@@ -166,7 +166,7 @@ const Join = () => {
               </div>
 
               <div className="space-y-3">
-                <label className="text-sm font-medium text-foreground">{lang === "ar" ? "مهارات الأتمتة الأساسية (اختر واحدة أو أكثر)" : "Primary Automation Skills (Select one or more)"}</label>
+                <label className={`text-sm font-medium text-foreground block ${lang === 'ar' ? 'text-right' : ''}`}>{lang === "ar" ? "مهارات الأتمتة الأساسية (اختر واحدة أو أكثر)" : "Primary Automation Skills (Select one or more)"}</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {skillsList.map((skill) => (
                     <div key={skill} className="flex items-center space-x-2 space-x-reverse">
@@ -188,7 +188,7 @@ const Join = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">{lang === "ar" ? "رابط السيرة الذاتية (Google Drive / Portfolio)" : "CV / Portfolio Link (Google Drive, etc.)"}</label>
+                <label className={`text-sm font-medium text-foreground block ${lang === 'ar' ? 'text-right' : ''}`}>{lang === "ar" ? "رابط السيرة الذاتية (Google Drive / Portfolio)" : "CV / Portfolio Link (Google Drive, etc.)"}</label>
                 <Input
                   name="cvUrl"
                   type="url"
