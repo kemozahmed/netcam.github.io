@@ -78,20 +78,15 @@ const Join = () => {
       if (error) throw error;
 
       // Send instant Gmail alert via EmailJS
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_JOIN || '';
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
-      if (serviceId && templateId && publicKey) {
-        await emailjs.send(serviceId, templateId, {
-          applicant_name: formData.fullName,
-          applicant_phone: formData.phone,
-          applicant_email: formData.email,
-          experience_level: formData.experienceLevel,
-          skills: formData.skills.join(', '),
-          cv_url: formData.cvUrl,
-          admin_url: 'https://enginx-automation.vercel.app/admin',
-        }, publicKey);
-      }
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_fo0e095',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_6vbhmer',
+        {
+          subject: '🧑‍💼 New Join Application',
+          notification_body: `Name: ${formData.fullName}\nPhone: ${formData.phone}\nEmail: ${formData.email}\nLevel: ${formData.experienceLevel}\nSkills: ${formData.skills.join(', ')}\nCV: ${formData.cvUrl}\n\nAdmin: https://enginx-automation.vercel.app/admin`,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'wtrstyzVpdh9JlLlN'
+      );
 
       toast.success(lang === 'ar' ? 'تم إرسال طلبك بنجاح!' : 'Your application has been submitted successfully!');
       setFormData({ fullName: "", email: "", phone: "", experienceLevel: "", cvUrl: "", skills: [] });
