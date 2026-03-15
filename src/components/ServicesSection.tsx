@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { Factory, ShieldCheck, MonitorSmartphone, Sun, Wifi, BarChart } from "lucide-react";
+import { Factory, Camera, MonitorSmartphone, Bot, Wifi, BarChart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/lib/supabase";
 
 const serviceKeys = [
   { icon: Factory, titleKey: "services.industrial.title", descKey: "services.industrial.desc", cmsKey: "servicesIndustrialDesc" },
-  { icon: ShieldCheck, titleKey: "services.security.title", descKey: "services.security.desc", cmsKey: "servicesSecurityDesc" },
+  { icon: Camera, titleKey: "services.security.title", descKey: "services.security.desc", cmsKey: "servicesSecurityDesc" },
   { icon: MonitorSmartphone, titleKey: "services.software.title", descKey: "services.software.desc", cmsKey: "servicesSoftwareDesc" },
-  { icon: Sun, titleKey: "services.solar.title", descKey: "services.solar.desc", cmsKey: "servicesSolarDesc" },
+  { icon: Bot, titleKey: "services.solar.title", descKey: "services.solar.desc", cmsKey: "servicesSolarDesc" },
   { icon: Wifi, titleKey: "services.iot.title", descKey: "services.iot.desc", cmsKey: "servicesIotDesc" },
   { icon: BarChart, titleKey: "services.dashboards.title", descKey: "services.dashboards.desc", cmsKey: "servicesDashboardsDesc" },
 ];

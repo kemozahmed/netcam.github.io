@@ -6,6 +6,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 import {
   Select,
   SelectContent,
@@ -47,6 +48,21 @@ const ContactSection = () => {
         }]);
 
       if (error) throw error;
+
+      // Send instant Gmail alert via EmailJS
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_CONTACT || '';
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+      if (serviceId && templateId && publicKey) {
+        await emailjs.send(serviceId, templateId, {
+          from_name: formData.name,
+          from_phone: formData.phone,
+          from_email: formData.email,
+          service_type: formData.service_type,
+          message: formData.message,
+          admin_url: 'https://enginx-automation.vercel.app/admin',
+        }, publicKey);
+      }
 
       toast.success(lang === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent successfully!');
       setFormData({ name: "", email: "", phone: "", service_type: "", message: "" });

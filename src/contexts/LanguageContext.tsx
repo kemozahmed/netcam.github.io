@@ -29,35 +29,35 @@ const translations: Record<string, Record<Lang, string>> = {
   // Services
   "services.subtitle": { en: "What We Offer", ar: "ما نقدمه" },
   "services.title": { en: "Our Services", ar: "خدماتنا" },
-  "services.industrial.title": { en: "Industrial Automation", ar: "الأتمتة الصناعية" },
+  "services.industrial.title": { en: "Industrial Automation (PLC/SCADA)", ar: "أتمتة خطوط الإنتاج (PLC/SCADA)" },
   "services.industrial.desc": {
-    en: "Streamline your manufacturing processes with advanced PLCs, robotics, and smart sensors for maximum efficiency.",
-    ar: "تبسيط عمليات التصنيع الخاصة بك باستخدام PLCs المتقدمة، الروبوتات، والمستشعرات الذكية لأقصى قدر من الكفاءة.",
+    en: "Full automation of production lines using PLC programming, SCADA systems, and smart industrial controllers.",
+    ar: "أتمتة كاملة لخطوط الإنتاج باستخدام برمجة PLC وأنظمة SCADA والمتحكمات الصناعية الذكية.",
   },
-  "services.security.title": { en: "Smart Security", ar: "الأمن الذكي والمراقبة" },
+  "services.security.title": { en: "Smart Surveillance", ar: "أنظمة المراقبة الذكية" },
   "services.security.desc": {
-    en: "AI-powered surveillance, access control, and complete perimeter security systems integrated with your operations.",
-    ar: "مراقبة مدعومة بالذكاء الاصطناعي، التحكم في الوصول، وأنظمة أمان محيطية متكاملة مع عملياتك.",
+    en: "AI-powered surveillance and access control systems integrated with industrial and commercial operations.",
+    ar: "أنظمة مراقبة ذكية مدعومة بالذكاء الاصطناعي وتحكم في الوصول متكاملة مع العمليات الصناعية والتجارية.",
   },
-  "services.software.title": { en: "Business Software & POS", ar: "برمجيات الأعمال ونقاط البيع" },
+  "services.software.title": { en: "Business Automation (POS)", ar: "أتمتة نقاط البيع والأعمال" },
   "services.software.desc": {
-    en: "Custom business management software, advanced POS systems, and ERP integration tailored for your enterprise.",
-    ar: "برامج إدارة أعمال مخصصة، أنظمة نقاط بيع (POS) متقدمة، وتكامل ERP مصمم خصيصاً لشركتك.",
+    en: "Custom POS systems, warehouse automation, and business management software for modern enterprises.",
+    ar: "أنظمة نقاط بيع مخصصة وأتمتة المستودعات وبرامج إدارة الأعمال للشركات الحديثة.",
   },
-  "services.solar.title": { en: "Renewable Energy & Solar", ar: "الطاقة المتجددة والشمسية" },
+  "services.solar.title": { en: "Production Line Robotics", ar: "روبوتات خطوط الإنتاج" },
   "services.solar.desc": {
-    en: "Sustainable solar power solutions with smart monitoring to reduce operational costs and carbon footprint.",
-    ar: "حلول طاقة شمسية مستدامة مع مراقبة ذكية لتقليل تكاليف التشغيل والبصمة الكربونية.",
+    en: "Industrial robotic arms and automated assembly solutions for manufacturing and production facilities.",
+    ar: "أذرع روبوتية صناعية وحلول تجميع آلية للمصانع ومرافق الإنتاج.",
   },
-  "services.iot.title": { en: "IoT Data Link", ar: "ربط بيانات إنترنت الأشياء (IoT)" },
+  "services.iot.title": { en: "Industrial IoT", ar: "إنترنت الأشياء الصناعي" },
   "services.iot.desc": {
-    en: "Connect your machinery to the cloud. Real-time data acquisition and industrial IoT infrastructure.",
-    ar: "ربط أجهزتك بالسحابة. الحصول على البيانات في الوقت الفعلي وبنية تحتية لإنترنت الأشياء الصناعي.",
+    en: "Remote monitoring and control of mechanical equipment via industrial IoT infrastructure and real-time data pipelines.",
+    ar: "المراقبة والتحكم عن بُعد في المعدات الميكانيكية عبر بنية إنترنت الأشياء الصناعية وقنوات البيانات اللحظية.",
   },
-  "services.dashboards.title": { en: "Performance Dashboards", ar: "لوحات التحكم في الأداء" },
+  "services.dashboards.title": { en: "Performance Dashboards", ar: "لوحات تحليل الأداء" },
   "services.dashboards.desc": {
-    en: "Interactive analytics dashboards providing actionable insights into your production and energy efficiency.",
-    ar: "لوحات تحكم تحليلية تفاعلية توفر رؤى قابلة للتنفيذ حول كفاءة الإنتاج والطاقة لديك.",
+    en: "Real-time production and profit analytics dashboards with actionable KPIs for factory and business intelligence.",
+    ar: "لوحات تحليل بيانات الإنتاج والأرباح لحظياً مع مؤشرات أداء قابلة للتنفيذ لذكاء المصانع والأعمال.",
   },
 
   // Why Us

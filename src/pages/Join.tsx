@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 import {
   Select,
   SelectContent,
@@ -75,6 +76,22 @@ const Join = () => {
         }]);
 
       if (error) throw error;
+
+      // Send instant Gmail alert via EmailJS
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || '';
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_JOIN || '';
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '';
+      if (serviceId && templateId && publicKey) {
+        await emailjs.send(serviceId, templateId, {
+          applicant_name: formData.fullName,
+          applicant_phone: formData.phone,
+          applicant_email: formData.email,
+          experience_level: formData.experienceLevel,
+          skills: formData.skills.join(', '),
+          cv_url: formData.cvUrl,
+          admin_url: 'https://enginx-automation.vercel.app/admin',
+        }, publicKey);
+      }
 
       toast.success(lang === 'ar' ? 'تم إرسال طلبك بنجاح!' : 'Your application has been submitted successfully!');
       setFormData({ fullName: "", email: "", phone: "", experienceLevel: "", cvUrl: "", skills: [] });

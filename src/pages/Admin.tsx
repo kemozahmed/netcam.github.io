@@ -220,6 +220,28 @@ const Admin = () => {
     document.body.removeChild(link);
   };
 
+  const exportContributorsToCsv = () => {
+    const headers = ["Name", "Email", "Phone", "Skills", "Experience Level", "CV URL", "Applied At"];
+    const csvData = contributors.map(c => [
+      `"${c.full_name.replace(/"/g, '""')}"`,
+      `"${c.email.replace(/"/g, '""')}"`,
+      `"${c.phone.replace(/"/g, '""')}"`,
+      `"${c.skills.join('; ').replace(/"/g, '""')}"`,
+      `"${c.experience_level.replace(/"/g, '""')}"`,
+      `"${c.cv_url.replace(/"/g, '""')}"`,
+      `"${new Date(c.applied_at).toLocaleDateString()}"`
+    ].join(','));
+    const csvContent = [headers.join(','), ...csvData].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    link.setAttribute("href", URL.createObjectURL(blob));
+    link.setAttribute("download", `enginx_contributors_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const fetchCmsSettings = async () => {
     setLoadingCms(true);
     try {
@@ -434,12 +456,18 @@ const Admin = () => {
                 <h2 className="text-2xl font-display font-bold text-primary">
                   {lang === "ar" ? "شبكة المساهمين (Marketplace)" : "Contributors Marketplace"}
                 </h2>
-                <Input
-                  placeholder={lang === "ar" ? "ابحث حسب المهارة (مثال: PLC, React)..." : "Filter by Skill (e.g., PLC, React)..."}
-                  value={contributorSearch}
-                  onChange={(e) => setContributorSearch(e.target.value)}
-                  className="max-w-xs bg-background"
-                />
+                <div className="flex items-center gap-2">
+                  <Input
+                    placeholder={lang === "ar" ? "ابحث حسب المهارة (مثال: PLC, React)..." : "Filter by Skill (e.g., PLC, React)..."}
+                    value={contributorSearch}
+                    onChange={(e) => setContributorSearch(e.target.value)}
+                    className="max-w-xs bg-background"
+                  />
+                  <Button variant="outline" onClick={exportContributorsToCsv} disabled={contributors.length === 0}>
+                    <Download className="mr-2 h-4 w-4" />
+                    {lang === "ar" ? "تصدير (CSV)" : "Export CSV"}
+                  </Button>
+                </div>
               </div>
 
               {loadingContributors ? (
