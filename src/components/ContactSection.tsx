@@ -90,7 +90,7 @@ const ContactSection = () => {
                     <Icon className="w-5 h-5 text-primary" />
                   </div>
                   {href ? (
-                    <a href={href} className="text-foreground hover:text-primary transition-colors break-all">
+                    <a href={href} dir="ltr" className="text-foreground hover:text-primary transition-colors break-all">
                       {text}
                     </a>
                   ) : (

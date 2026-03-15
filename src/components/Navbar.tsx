@@ -1,4 +1,4 @@
-import { Settings, Globe } from "lucide-react";
+import { Settings, Globe, Lock } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 
@@ -43,6 +43,15 @@ const Navbar = () => {
           >
             <Globe className="w-4 h-4" />
             {lang === "en" ? "العربية" : "English"}
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => window.location.href = '/admin'}
+            className="text-muted-foreground hover:text-primary"
+            title="Admin"
+          >
+            <Lock className="w-4 h-4" />
           </Button>
         </div>
       </div>
